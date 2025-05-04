@@ -15,14 +15,21 @@
       font-size: 16px;
       line-height: 1.5;
       cursor: default;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      flex-direction: column;
     }
 
     #container {
       max-width: 800px;
-      margin: 80px auto;
+      width: 90%;
+      margin: 40px auto;
       padding: 20px;
       border: 1px solid #00ff00;
       box-shadow: 0 0 10px #00ff00;
+      box-sizing: border-box;
     }
 
     #initial-message {
@@ -41,6 +48,7 @@
     .info-line {
       margin: 10px 0;
       white-space: pre-wrap;
+      word-break: break-word;
     }
 
     .final-prompt {
@@ -62,6 +70,23 @@
 
     @keyframes blink {
       50% { border-color: transparent; }
+    }
+
+    @media (max-width: 600px) {
+      #container {
+        margin: 20px 10px;
+        padding: 15px;
+      }
+
+      #initial-message {
+        font-size: 16px;
+        padding: 30px 0;
+      }
+
+      .info-line,
+      .typing {
+        font-size: 14px;
+      }
     }
   </style>
 </head>
