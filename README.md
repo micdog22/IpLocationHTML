@@ -1,4 +1,4 @@
-# Projeto PHP IP Locator (Clone de 0x.lv)
+# Projeto PHP IP Locator
 
 Este projeto é uma aplicação web simples criada com PHP. Ele exibe o endereço IP público do visitante e informações de geolocalização (país, região, cidade) após um clique inicial na página.
 
