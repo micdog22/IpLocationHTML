@@ -1,85 +1,53 @@
-/* General Styles */
-body, html {
-    height: 100%;
+/* Estilo geral */
+body {
     margin: 0;
     padding: 0;
     background-color: #000;
-    color: #00FF00; /* Hacker Green */
+    color: #00ff00;
     font-family: 'Courier New', Courier, monospace;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: left; /* Align text left like a terminal */
-    overflow: hidden; /* Prevent scrollbars */
+    font-size: 16px;
+    line-height: 1.5;
+    cursor: default;
 }
 
+/* Centraliza tudo */
 #container {
-    width: 80%;
     max-width: 800px;
-    cursor: pointer;
+    margin: 80px auto;
+    padding: 20px;
+    border: 1px solid #00ff00;
+    box-shadow: 0 0 10px #00ff00;
 }
 
-/* Initial Message Style */
+/* Mensagem inicial */
 #initial-message {
-    font-size: 1.5em;
-    color: #FFFFFF; /* White title */
     text-align: center;
-    animation: blink-caret 1s step-end infinite;
+    font-size: 18px;
+    padding: 50px 0;
+    border: 1px dashed #00ff00;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
 
-/* Blinking caret animation */
-@keyframes blink-caret {
-    from, to { border-right-color: transparent }
-    50% { border-right: .1em solid #00FF00; }
+#initial-message:hover {
+    background-color: rgba(0, 255, 0, 0.1);
 }
 
-/* Info Terminal Styles */
-#info-terminal {
-    border: 1px solid #00FF00;
-    padding: 15px;
-    background-color: rgba(0, 0, 0, 0.8);
-    margin-top: 20px;
-}
-
+/* Estilo das linhas de informação */
 .info-line {
-    margin-bottom: 8px;
-    font-size: 1.1em;
-    white-space: pre-wrap; /* Allow wrapping but preserve spaces */
-    word-break: break-all; /* Break long strings like User Agent */
-    opacity: 0; /* Start hidden for animation */
-    transition: opacity 0.5s ease-in-out;
+    margin: 10px 0;
+    white-space: pre-wrap;
 }
 
-.info-line::before {
-    content: attr(data-label) ": ";
-    color: #FFFFFF; /* White label */
+/* Linha final */
+.final-prompt {
+    margin-top: 30px;
     font-weight: bold;
 }
 
-/* Specific styles for error and final prompt */
-#error-message {
-    color: #FF0000; /* Red for errors */
-}
-
-#error-message::before {
-    color: #FF0000; /* Red label for errors */
-}
-
-.final-prompt {
-    color: #FFFFFF; /* White prompt */
-    margin-top: 15px;
-}
-
-.final-prompt::before {
-    content: ""; /* No label for the final prompt */
-}
-
-/* Link style */
-a {
-    color: #00FFFF; /* Cyan link */
-    text-decoration: none;
-}
-a:hover {
+/* Readme clicável */
+#readme-link {
+    color: #00ffcc;
     text-decoration: underline;
+    cursor: pointer;
 }
-

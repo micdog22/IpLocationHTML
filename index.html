@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>IP Locator [H4CK3R_3D1T10N]</title>
+  <link rel="stylesheet" href="static/style.css" />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #000;
+      color: #00ff00;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 16px;
+      line-height: 1.5;
+      cursor: default;
+    }
+
+    #container {
+      max-width: 800px;
+      margin: 80px auto;
+      padding: 20px;
+      border: 1px solid #00ff00;
+      box-shadow: 0 0 10px #00ff00;
+    }
+
+    #initial-message {
+      text-align: center;
+      font-size: 18px;
+      padding: 50px 0;
+      border: 1px dashed #00ff00;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    #initial-message:hover {
+      background-color: rgba(0, 255, 0, 0.1);
+    }
+
+    .info-line {
+      margin: 10px 0;
+      white-space: pre-wrap;
+    }
+
+    .final-prompt {
+      margin-top: 30px;
+      font-weight: bold;
+    }
+
+    .typing {
+      border-right: 2px solid #00ff00;
+      white-space: nowrap;
+      overflow: hidden;
+      width: 0;
+      animation: typing 1.5s steps(50, end) forwards, blink 0.7s infinite;
+    }
+
+    @keyframes typing {
+      to { width: 100%; }
+    }
+
+    @keyframes blink {
+      50% { border-color: transparent; }
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <div id="initial-message">
+      &gt; ACCESS GRANTED :: CLICK TO REVEAL TARGET INFO...
+    </div>
+    <div id="info-terminal" style="display: none;"></div>
+  </div>
+
+  <!-- Música de fundo -->
+  <audio id="background-music" loop>
+    <source src="music/hacking.mp3" type="audio/mpeg" />
+    Your browser does not support the audio element.
+  </audio>
+
+  <script>
+    const sessionStart = Date.now();
+
+    document.getElementById('initial-message').addEventListener('click', function () {
+      this.style.display = 'none';
+      document.getElementById('info-terminal').style.display = 'block';
+
+      const audio = document.getElementById('background-music');
+      audio.volume = 0.4;
+      audio.play().catch(err => console.warn("Erro ao iniciar áudio:", err));
+
+      const values = {
+        "Status": "IN PROGRESS",
+        "Local Time": new Date().toLocaleString(),
+        "Platform": navigator.platform || "N/A",
+        "User Agent": navigator.userAgent,
+        "Screen Resolution": `${window.screen.width}x${window.screen.height}`,
+        "Browser Language": navigator.language,
+        "Device Memory": navigator.deviceMemory ? navigator.deviceMemory + " GB" : "N/A",
+        "Cookies Enabled": navigator.cookieEnabled ? "Yes" : "No",
+        "Touch Support": ('ontouchstart' in window) ? "Yes" : "No",
+        "Hardware Concurrency": navigator.hardwareConcurrency || "N/A",
+        "Session Duration": getSessionDuration()
+      };
+
+      if ("geolocation" in navigator) {
+        values["GPS"] = "ACCESSING...";
+        navigator.geolocation.getCurrentPosition(pos => {
+          values["GPS Latitude"] = pos.coords.latitude.toFixed(6);
+          values["GPS Longitude"] = pos.coords.longitude.toFixed(6);
+          values["GPS Accuracy"] = pos.coords.accuracy + " meters";
+          getIPInfo(values);
+        }, err => {
+          values["GPS"] = "DENIED (" + err.message + ")";
+          getIPInfo(values);
+        }, {
+          enableHighAccuracy: true,
+          timeout: 5000
+        });
+      } else {
+        values["GPS"] = "Not supported";
+        getIPInfo(values);
+      }
+    });
+
+    function getSessionDuration() {
+      const seconds = Math.floor((Date.now() - sessionStart) / 1000);
+      return `${seconds} second(s)`;
+    }
+
+    function getIPInfo(values) {
+      fetch("https://ipinfo.io/json")
+        .then(res => res.json())
+        .then(data => {
+          values["IP Address"] = data.ip || "N/A";
+          values["Hostname"] = data.hostname || "N/A";
+          values["Location"] = `${data.city || "?"}, ${data.region || "?"}, ${data.country || "?"}`;
+          values["Coordinates"] = data.loc || "N/A";
+          values["Organization"] = data.org || "N/A";
+          values["ASN"] = (data.org || "").split(" ")[0];
+          values["Postal Code"] = data.postal || "N/A";
+          values["Timezone"] = data.timezone || "N/A";
+          values["Country Code"] = data.country || "N/A";
+          values["Status"] = "SUCCESS";
+          typeLinesSequentially(values);
+        })
+        .catch(err => {
+          values["Status"] = "ERROR: " + err.message;
+          typeLinesSequentially(values);
+        });
+    }
+
+    function typeLinesSequentially(values) {
+      const container = document.getElementById('info-terminal');
+      let index = 0;
+      const keys = Object.keys(values);
+
+      function typeNextLine() {
+        if (index >= keys.length) {
+          const done = document.createElement("div");
+          done.className = "info-line";
+          done.innerHTML = "&gt; <b>DATA ACQUISITION COMPLETE :: STANDING BY...</b>";
+          container.appendChild(done);
+          return;
+        }
+
+        const key = keys[index];
+        const value = values[key];
+        const line = document.createElement("div");
+        line.className = "info-line typing";
+        line.textContent = `> ${key}: ${value}`;
+        container.appendChild(line);
+        index++;
+        setTimeout(typeNextLine, 250);
+      }
+
+      typeNextLine();
+    }
+  </script>
+</body>
+</html>
