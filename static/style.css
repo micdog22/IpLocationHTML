@@ -1,31 +1,85 @@
+/* General Styles */
 body, html {
     height: 100%;
     margin: 0;
     padding: 0;
     background-color: #000;
-    color: #fff;
+    color: #00FF00; /* Hacker Green */
     font-family: 'Courier New', Courier, monospace;
     display: flex;
     justify-content: center;
     align-items: center;
-    text-align: center;
+    text-align: left; /* Align text left like a terminal */
     overflow: hidden; /* Prevent scrollbars */
 }
 
 #container {
+    width: 80%;
+    max-width: 800px;
     cursor: pointer;
 }
 
+/* Initial Message Style */
 #initial-message {
     font-size: 1.5em;
+    color: #FFFFFF; /* White title */
+    text-align: center;
+    animation: blink-caret 1s step-end infinite;
 }
 
-#ip-info p {
-    margin: 10px 0;
-    font-size: 1.2em;
+/* Blinking caret animation */
+@keyframes blink-caret {
+    from, to { border-right-color: transparent }
+    50% { border-right: .1em solid #00FF00; }
 }
 
-#ip-info span {
+/* Info Terminal Styles */
+#info-terminal {
+    border: 1px solid #00FF00;
+    padding: 15px;
+    background-color: rgba(0, 0, 0, 0.8);
+    margin-top: 20px;
+}
+
+.info-line {
+    margin-bottom: 8px;
+    font-size: 1.1em;
+    white-space: pre-wrap; /* Allow wrapping but preserve spaces */
+    word-break: break-all; /* Break long strings like User Agent */
+    opacity: 0; /* Start hidden for animation */
+    transition: opacity 0.5s ease-in-out;
+}
+
+.info-line::before {
+    content: attr(data-label) ": ";
+    color: #FFFFFF; /* White label */
     font-weight: bold;
+}
+
+/* Specific styles for error and final prompt */
+#error-message {
+    color: #FF0000; /* Red for errors */
+}
+
+#error-message::before {
+    color: #FF0000; /* Red label for errors */
+}
+
+.final-prompt {
+    color: #FFFFFF; /* White prompt */
+    margin-top: 15px;
+}
+
+.final-prompt::before {
+    content: ""; /* No label for the final prompt */
+}
+
+/* Link style */
+a {
+    color: #00FFFF; /* Cyan link */
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
 }
 
