@@ -1,4 +1,4 @@
-# IP Locator [H4CK3R_3D1T10N] 💻🧠
+# IP Locator💻🧠
 
 Uma interface de rastreamento visual estilo terminal hacker, feita 100% com **HTML, CSS e JavaScript** — sem PHP, sem backend. Perfeita para hospedar no GitHub Pages.
 
