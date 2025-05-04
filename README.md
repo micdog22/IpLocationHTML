@@ -1,57 +1,68 @@
-# Projeto PHP IP Locator
+# IP Locator [H4CK3R_3D1T10N] 💻🧠
 
-Este projeto é uma aplicação web simples criada com PHP. Ele exibe o endereço IP público do visitante e informações de geolocalização (país, região, cidade) após um clique inicial na página.
+Uma interface de rastreamento visual estilo terminal hacker, feita 100% com **HTML, CSS e JavaScript** — sem PHP, sem backend. Perfeita para hospedar no GitHub Pages.
 
-## Funcionalidades
+## ✅ Funcionalidades
 
-*   Tela inicial com a mensagem "CLICK TO ENTER...".
-*   Ao clicar, busca e exibe o IP e a localização do visitante usando JavaScript e um script PHP backend.
-*   Utiliza a API `ipinfo.io` para obter os dados de geolocalização no backend PHP.
-*   Interface simples e escura.
+- 🔍 Consulta de IP (via [ipinfo.io](https://ipinfo.io))
+- 📍 Localização GPS real com precisão (se permitido)
+- 💾 Informações do sistema (RAM, CPU, plataforma, resolução, idioma, cookies)
+- 🔊 Música de fundo automática ao clicar
+- ⌨️ Efeito de digitação linha a linha (terminal retrô)
+- ⏱️ Duração da sessão exibida em tempo real
+- 📡 Compatível com desktop e mobile
+- 💯 Totalmente client-side (sem PHP ou servidor)
 
-## Estrutura do Projeto
+---
+
+## 🚀 Como usar
+
+1. Clone ou baixe este repositório.
+2. Coloque um arquivo MP3 em `/music/hacking.mp3` (ou use o original).
+3. Abra `index.html` em um navegador ou publique no GitHub Pages.
+
+---
+
+## 📁 Estrutura do Projeto
 
 ```
-php_ip_locator/
-├── static/
-│   ├── style.css     # Folha de estilos CSS
-│   └── script.js     # Script JavaScript para interação
-├── index.php         # Arquivo HTML/PHP principal
-└── get_ip_info.php   # Script PHP backend para obter IP e localização
+📦 ip-locator/
+├── index.html            ← Arquivo principal da interface
+├── music/                ← Pasta de músicas
+│   └── hacking.mp3       ← Música de fundo (MP3)
+└── static/               ← Pasta de estilos
+    └── style.css         ← Estilo visual "hacker"
 ```
 
-## Como Executar Localmente
+---
 
-Para executar este projeto, você precisa de um servidor web com suporte a PHP (como Apache ou Nginx com PHP-FPM, ou o servidor embutido do PHP para desenvolvimento).
+## 🛠 Tecnologias
 
-1.  **Descompacte o arquivo:** Extraia o conteúdo do arquivo `php_ip_locator.zip` para um diretório dentro do seu servidor web (por exemplo, `htdocs` no XAMPP/MAMP, `www` no WAMP, ou qualquer diretório que você configure).
+- HTML5
+- CSS3 (tema verde neon)
+- JavaScript (puro, sem frameworks)
+- API: [ipinfo.io](https://ipinfo.io)
 
-2.  **Navegue até o diretório:** Certifique-se de que seu servidor web esteja rodando.
+---
 
-3.  **Acesse no navegador:** Abra seu navegador e visite o URL correspondente ao local onde você colocou os arquivos. Por exemplo:
-    *   Se você colocou na raiz do servidor: `http://localhost/`
-    *   Se você colocou em uma subpasta `php_ip_locator`: `http://localhost/php_ip_locator/`
+## ⚠️ Observações
 
-4.  Clique na tela para ver suas informações de IP e localização.
+- O navegador **solicitará permissão para acesso à geolocalização**.
+- Sem permissão, o GPS real será substituído pela localização baseada em IP.
+- A API gratuita da ipinfo.io tem um limite de ~1.000 requisições/dia sem token.
 
-**Alternativa (Usando o Servidor Embutido do PHP - Apenas para Desenvolvimento):**
+---
 
-1.  Descompacte o arquivo.
-2.  Abra um terminal ou prompt de comando na pasta `php_ip_locator`.
-3.  Execute o comando (requer PHP instalado no seu sistema):
-    ```bash
-    php -S localhost:8000
-    ```
-4.  Acesse `http://localhost:8000` no seu navegador.
+## 🧠 Demonstração
 
-## Como Subir para o GitHub
+> **Recomendado hospedar via GitHub Pages**:  
+> Vá em *Settings > Pages* no repositório e selecione a branch e pasta `/root`.
 
-Siga os passos que detalhei anteriormente para usar os comandos `git init`, `git add .`, `git commit`, `git remote add origin ...`, e `git push ...` dentro da pasta `php_ip_locator` no seu computador.
+---
 
-## Observações
+## 👨‍💻 Desenvolvido por
 
-*   A precisão da geolocalização depende da API `ipinfo.io`.
-*   O script `get_ip_info.php` tenta detectar o IP real mesmo atrás de proxies comuns.
-*   Para que o PHP consiga fazer requisições externas (`file_get_contents` para `ipinfo.io` e `api.ipify.org`), a configuração `allow_url_fopen` precisa estar habilitada no seu `php.ini` (geralmente está por padrão).
-*   Este é um exemplo simples e pode precisar de ajustes para ambientes de produção (melhor tratamento de erros, segurança, etc.).
+**MicDog**  
+---
 
+© 2025 - Projeto open-source para fins educacionais.
