@@ -1,6 +1,6 @@
 # IP Locator💻🧠
 
-Uma interface de rastreamento visual estilo terminal hacker, feita 100% com **HTML, CSS e JavaScript** — sem PHP, sem backend.
+Uma interface de rastreamento visual estilo terminal hacker, feita 100% com **HTML, CSS e JavaScript**, sem PHP, sem backend.
 
 ## ✅ Funcionalidades
 
